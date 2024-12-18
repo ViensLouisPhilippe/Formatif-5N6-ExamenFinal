@@ -1,64 +1,36 @@
 import 'package:flutter/material.dart';
+import 'generated/l10n.dart';
 
-void main() {
-  runApp(const MyApp());
+class Traduction extends StatefulWidget {
+  const Traduction({super.key});
+
+  @override
+  State<Traduction> createState() => _TraductionState();
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class _TraductionState extends State<Traduction> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Mise en page'),
-      supportedLocales: [
-        Locale('en', 'US'), // English
-        Locale('fr', 'FR'), // French
-      ],
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        S.delegate
-      ],
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-final List<String> months = [
-  'Janvier',
-  'Février',
-  'Mars',
-  'Avril',
-  'Mai',
-  'Juin',
-  'Juillet',
-  'Août',
-  'Septembre',
-  'Octobre',
-  'Novembre',
-  'Décembre',
-];
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
+    // Access localized strings
+    final localizations = S.of(context);
+    final List<String> months = [
+      localizations.january,
+      localizations.february,
+      localizations.march,
+      localizations.april,
+      localizations.may,
+      localizations.june,
+      localizations.july,
+      localizations.august,
+      localizations.september,
+      localizations.october,
+      localizations.november,
+      localizations.december,
+    ];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text(localizations.appTitle),  // Using translated app title
       ),
       body: Column(
         children: [
@@ -73,12 +45,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: FloatingActionButton.extended(
                   onPressed: () {
                     // Handle "Oui" button action
-                    print('Oui pressed');
+                    print(localizations.yes);  // Using translated "Yes"
                   },
                   backgroundColor: Colors.green,
-                  label: const Text(
-                    'Oui',
-                    style: TextStyle(color: Colors.white),
+                  label: Text(
+                    localizations.yes,  // Using translated "Yes"
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ),
               ),
@@ -87,12 +59,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: FloatingActionButton.extended(
                   onPressed: () {
                     // Handle "Non" button action
-                    print('Non pressed');
+                    print(localizations.no);  // Using translated "No"
                   },
                   backgroundColor: Colors.red,
-                  label: const Text(
-                    'Non',
-                    style: TextStyle(color: Colors.white),
+                  label: Text(
+                    localizations.no,  // Using translated "No"
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ),
               ),
@@ -105,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
               itemCount: months.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(months[index]),
+                  title: Text(months[index]),  // Using translated month names
                   trailing: IconButton(
                     onPressed: () {},
                     icon: const Icon(Icons.delete),
@@ -113,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
-          )
+          ),
         ],
       ),
     );

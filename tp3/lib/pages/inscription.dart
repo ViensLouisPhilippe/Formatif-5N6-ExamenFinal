@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:tp3/formatif.dart';
 import 'package:tp3/pages/accueil.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import '../exo_erreurFormatif.dart';
 import 'connexion.dart';
 
 class Inscription extends StatefulWidget {
@@ -235,11 +236,19 @@ class _InscriptionState extends State<Inscription> {
                       },
                     ),
                     ElevatedButton(
-                      child: const Text("formatif?"),
+                      child: const Text("formatif"),
                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => Formatif()),
+                        );
+                      },
+                    ),ElevatedButton(
+                      child: const Text("erreurFormatif"),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => GamePage()),
                         );
                       },
                     ),
